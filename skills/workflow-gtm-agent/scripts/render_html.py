@@ -52,6 +52,16 @@ def collect_gaps(plan):
 def badge(text, color, fg="#fff"):
     return f'<span style="background:{color};color:{fg};border-radius:10px;padding:2px 9px;font-size:11px;font-weight:600;white-space:nowrap">{esc(text)}</span>'
 
+def _squad(ps):
+    """Header line of the named pillar squad (primary stakeholders) from the roster."""
+    if not ps: return ""
+    label = {"product_leader":"Product Leader","product_manager":"PM","design_leader":"Design",
+             "sdm":"SDM","product_marketing":"Product Mktg","sol_eng":"Sol Eng","esup":"ESUP"}
+    parts = [f"{lab}: {esc(ps[k])}" for k,lab in label.items() if ps.get(k)]
+    if not parts: return ""
+    return ('<div style="margin-top:8px;font-size:12px;opacity:.85">Squad &nbsp;'
+            + " &nbsp;|&nbsp; ".join(parts) + "</div>")
+
 def _banner(summaries, high, med, gap_rows):
     """Concise action banner: one-line summaries for repetitive gaps + distinct items only."""
     n = len(high) + len(med)
@@ -128,11 +138,13 @@ def render(plan):
 .wrap{{max-width:1080px;margin:0 auto;padding:24px}} table td,table th{{padding:8px;vertical-align:top;border-bottom:1px solid #f0f3f7}}
 h1{{margin:0;font-size:22px}} a{{color:{BLUE}}}</style></head><body>
 <div style="background:{NAVY};color:#fff;padding:20px 0"><div class="wrap">
-  <h1>GTM Plan — {proj} <span style="color:{LIGHT}">/ {season}</span></h1>
+  <h1>GTM Plan — {proj} <span style="color:{LIGHT}">/ {season}</span>{(' <span style="color:'+ORANGE+'">• '+esc(plan.get('pillar'))+'</span>') if plan.get('pillar') else ''}</h1>
   <div style="opacity:.85;font-size:13px;margin-top:6px">
     {len(planned)} JPDs planned &nbsp;•&nbsp; {n_assumed} on assumed season-end anchor &nbsp;•&nbsp;
     {len(high)+len(med)} action items
-  </div></div></div>
+  </div>
+  {_squad(plan.get('pillar_stakeholders'))}
+  </div></div>
 <div class="wrap">
   {_banner(summaries, high, med, gap_rows)}
   {''.join(cards)}

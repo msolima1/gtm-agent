@@ -87,7 +87,12 @@ THAT team actually needs:
 python3 scripts/curate.py --level 3 --output table
 # whole season (uses each JPD's Launch Level; flags those with none):
 python3 scripts/curate.py --jpds-file jpds.json --output json > curated.json
+# fill REAL named owners for a pillar from the product roster:
+python3 scripts/curate.py --jpds-file jpds.json --pillar Maintenance --output json > curated.json
 ```
+`--pillar` resolves the pillar's named squad (Product Leader, PM, Design, SDM, Product Marketing,
+Sol Eng, ESUP) from `references/product_roster.csv` and replaces placeholder owners. Pillar keyword
+sets live in `curate.py` (`PILLAR_KEYWORDS`) — extend for Safety/Compliance/etc.
 It filters `references/gtm_checklist.csv` (86 tasks, `L1..L4` + team + release stage) to the level's
 tasks, groups by team, and joins the owner from `references/stakeholders.csv`. The deliverable you
 present is the per-team brief, not the raw row — if a team's brief is large, emit it as a **linked
@@ -141,5 +146,7 @@ SDM"** block naming WHO to ask: **Dev Lead** (FF mechanics), **PM** (release tim
 - `references/PROCESS-RULES.md` — captured Geotab rules (4 impact tiers verbatim, FF intake-form
   schema, Beta tracks + durations, output-template sections, field mapping, reasoning chain).
 - `references/gtm_checklist.csv` — 86 GTM tasks x level applicability x team x release stage.
-- `references/stakeholders.csv` — team -> role -> default owner.
-- `references/lead_times.csv` — release-strategy windows + per-category lead offsets.
+- `references/stakeholders.csv` — GTM team -> role -> default (cross-pillar) owner.
+- `references/product_roster.csv` — portfolio/focus-area -> named squad (Product Leader, PM, Design,
+  SDM, Data Science, Product Marketing, Sol Eng, ESUP). Used by `curate.py --pillar` to fill real names.
+- `references/lead_times.csv` — release-strategy windows + per-team SLAs.

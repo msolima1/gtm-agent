@@ -139,6 +139,7 @@ def main():
                     "kickoff_by": earliest.isoformat(), "teams": dated})
 
     result = {"project": data.get("project"), "season": data.get("season"),
+              "pillar": data.get("pillar"), "pillar_stakeholders": data.get("pillar_stakeholders"),
               "planned": out, "unplanned": unplanned, "needs_sdm": needs if data.get("mode")=="season" else []}
 
     if a.output == "json":

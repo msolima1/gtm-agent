@@ -1,0 +1,112 @@
+portfolio,product_leader,design_leader,product_manager,product_design,focus_areas,development_team,sdm,data_science,product_marketing,sol_eng,esup
+Core UX,Radu Creosteanu,Benjamin Wong Samuel Rendon Shaili Chibba,Sharmini Ray,Maksym Rewko,"Menu, Support, Walkme, Asset details, Inventory, Messaging, White Label Framework, Toolbars",NULL Pixels - 4Front,Yulia Grechishkina,,Sumiti Narang,Shivam Agnihotri,Sahil Momin
+Core UX,,,Shayta Roy Saha,"Trips: Ashley Parker
+Map: Anne Mary Pham (Amp) Maksym Rewko
+System Settings: Boris Yu
+User profile: Cherie Korol, Boris Yu
+Onboarding & Registration: Shaili Chibba","Trips History, Map, System Settings, User Profile,  Database Registration",NULL Pixels - Pixel Pipeline,Yaneth Fernandez,,,Shivam Agnihotri,Yash Patel
+Core UX,,,,,"Rules, Notifications, Audit Log, Onboarding",NULL Pixels - Base16,,,,,
+Core UX,,,,Anna Kirik,"WalkMe, Feedback, Onboarding",Digital Adoption,,,,Shivam Agnihotri,
+Core UX,,,Sharmini Ray,Barrett FlemonsApril Yu,Zenith - UI Framework and Design System,NULL Pixels - Foundation,Yulia Grechishkina,,,,
+Insights,,,Sajad Shiravi,Cherie Korol,"Reporting, Excel Server, Exceptions Frontend",Knife,Shaarujaa Nadarajah,,,Aakash Dubey,Sahil Momin
+Insights,,,,,Geotab Ace,AI Engineering Team NULL Pixels - Base16,,Daniel J. Lewis,,,Zeinab Rahal
+Insights,,,Harry Butcher,,Geotab Data Connector (GDC),DNA Platform (Digestion) APIology (frontend),None,Ivan Li,,Aaron Demers Dena Krieger,
+Mobile Platform,,,Andrew Lavrov,Rafael Castillo,Geotab Drive Platform,Io,,,,Jorge Paz Rodriguez,Zeinab Rahal
+Mobile Platform,,,,N/A,"Mobile SDK, Mobile App Deployments, Push Notifications",Magenta,,,,,
+Identity and Access,,,Paul Stobbe,Boris Yu,"CIAM (Authentication), Security Clearances (Authorization), Users",Connection,Kos Kyzymenko,,,,Sahil Momin
+Integrations,,,Paul Stobbe,Boris Yu,"SDK & Developer Site, Native Integrations, BAR - CTP middleware integration, Stolen Vehicle Recovery",APIology,Kos Kyzymenko,,,Aaron Demers Adam Rocque Michael van Schalkwyk,
+Integrations,,,Anagh Goswami,N/A,"API and SDK development, Active Tracking",SDK,,,,Adam Rocque Aaron Demers Michael van Schalkwyk Fernando Matamoros,Zeinab Rahal
+Data Access & Runtime Platform,,,Glen Mercer,N/A,"Global Registry, Reverse Proxy, High Availability Mode (HAM), Sentry, Jurisdiction (Data Residency), Unleash, Vault, Logging Logging, Redis, Database services and NATS",Infrastructure,,,,,Yash Patel
+Data Access & Runtime Platform,,,,,"Bridge base classes, NPGSQL, Partitioning, Replica, Upgrades, Initialization, Active State Watcher and Database Delete, Connection pooling, Purge.",Prism,,,,,
+Data Ingestion and Processing,,,Mehant Parkash,N/A,"DDIS Platform and Infrastructure, Reprocessing, Old Data",Fox - GC,,,,,
+Data Ingestion and Processing,,,,,"Trips generation, Odometer, Engine Hours calculators, DeviceStatusInfo, Restricted Data Mode (RDM),  Auto Vehicle Management (AVM), Driver Change",Fox - Wolf,,,,Alfonso Santos Fernando Matamoros,
+Data Ingestion and Processing,,,,,"Rules Engine, Notifications backend, IOXAddOnServer, ExceptionEvents backend",Fox - Ocelot,,,,,
+Data Ingestion and Processing,,,,,"Gateway, LiveDownloader, MiniHAGR","Mustang, Viper, Cobra, Challenger",,,,,
+Data Ingestion and Processing,,,Vladyslav Bryukhan,,"Diagnostics as a Platform, VIN Decoder",Diagnostics,,,,,Jorge Ruiz
+Data Ingestion and Processing,,,Siddharth Ramachandran,,"Data Sharing, Consent Platform & Rate Plan Downloader",Echo,,,,Adam Rocque Abdur Rehman Malik,Yash Patel
+Data & AI Platform,,,Ashish Mathew,N/A,"ADTS Receiver, BIP Uploader, Server-side Address Lookup, EmailSender, Groups",Nexus,Vivian Wei,Ivan Li,,,
+Data & AI Platform,,,,,"ADTS Publisher, BSP, DaaS, IMDB, GDC Gateway",DNA Platform (Digestion),,,,,Hari Hara Sudhan Govindaraj
+Data & AI Platform,,,,,"BIP, SPE, Cloud Data Sharing",DNA Platform (Ingestion),,,,"Edison Hao , Eric Zakher",
+Data & AI Platform,,,Emily Eros,,"Map Services (GeoCoding, Navigation, Map Tile, Timezone, POI etc),  Map Server (Speed Limit)",DNA Platform (GeoSpatial Platform),None,Jorge Gonzalez,,,
+Data & AI Platform,,,Hamoun Karami (Ham),,"GenAI Gateway / GenAI Lens / GenAI Connect JupyterHub, Ray, ML Flow, Model Registry",DNA Platform (AI Platform),Ying Liu (Ella),,,,
+Data & AI Platform,,,Vladyslav Bryukhan,,Orchestration Platform Geotab Query Engine / Data Hub Platform Infra Geotab GPT / Superset / DPMC / Dekart,DNA Platform (Orchestration),None,Varun Naroia,,,
+OEM,,,Alberto Lopez Salcedo,N/A,"OEM Activations & Subscription Workflow, EU OEMs, DIG (Data Ingestion Gateway), Partner Insights",Tangerine/Yellow/Flash,Shanza Akmal,,Julia Pare,Keith Paul-Onderisin,
+OEM,,,Puneet Sharma,,"OEM Cloud Data Platform & Integrations, NA OEMs",,,,,,
+OEM,,,Hamoun Karami (Ham),,Asian OEMs,,,,,,
+OEM,,,Alberto Lopez Salcedo,,GO Embedded for OEM (CVaaS),Cross Functional,,,,,Mohammed Al-Kfaween
+Administration Platform,Chris Jackson,Benjamin Wong,Colin Bowers,,Work Hours / Holidays,Pulsar / Board,Kelechi Ekeh,,Jason Mitrow,,
+Administration Platform,,,Colin Bowers,,Timecard,Pulsar / Board,,,,,
+Administration Platform,,,Colin Bowers,,"Zones  - Intelligent Zones, Zones, ZoneTypes, CustomerVisits",Pulsar / Board,,,,,Sahil Momin
+Insights,,,Colin Bowers,,Area of Activity -> Investigations,Quasar / Board,,,,Brian Twomley Omar Chowdhury,
+Public Works,,,Colin Bowers,,Public Works   - Citizen Insights  - Material Management Reporting  - Route Completion  - WRKS - Spreader configuration,Quasar / Board,,,,Brian Twomley Omar Chowdhury Claire Barker- Sharp,Sahil Momin
+Public Works,,,Colin Bowers,N/A,IOX WRKS,Team Falcon,,,,Omar Chowdhury Brian Twomley,Software:Sahil Momin EMB: Josh Gloor
+Safety,Vik Sridhar,Benjamin Wong,Justin Kammerer,,Collision Risk,Void,Kathleen McGarrell,Tuhin Tiwari,Kate Danforth,,Zeinab Rahal
+Safety,,,,,Activity (new pages/experiences),Void,,,,,Zeinab Rahal
+Safety,,,,Yunsung (Tylor) Lee & Joe Brownstein,Collision risk probability model,Safety R&D team,,Tuhin Tiwari,,,
+Safety,,,,,Speed limits,Maps Server team,,Jorge Gonzalez,,,
+Safety,,,,,Speed profile,Void,,,,,
+Safety,,,,,Collision detection and reconstruction,Safety R&D team,,Tuhin Tiwari,,Edison Hao,Yash Patel
+Safety,,,,,Safety Rules and Exceptions,Safety R&D team Void,,Tuhin Tiwari,,Edison Hao,
+Safety,,,Eric O'Brien,Yunsung (Tylor) Lee & Joe Brownstein,Coaching,Voyager,,Tuhin Tiwari,Kate Danforth,,
+Safety,,,San Kassiedass,Yunsung (Tylor) Lee & Joe Brownstein,"Incident Management (Collision Detection, Collision Reconstruction, Area of Activity, Investigations, Collision Form)",Pulsar,,Matthew Konski,Kate Danforth,,Prakhar Jalan
+Operations,Vik Sridhar,Benjamin Wong,Ricky Rivera,Jordan Borges Christina Valentino,Work Order Management,Costa del Sol,Mohamed Soliman,,Tailar Kennedy,Rafael Nazareno,Jorge Ruiz
+Operations,,,Ricky Rivera,,Schedules,,,,,,
+Operations,,,Ricky Rivera,,Maintenance Rules,,,,,,
+Insights,,,Paul Maida,,Roadside Assistance,APIology,,,,"Rafael Nazareno, Fernando Matamoros",
+Insights,,,Paul Maida,,Faults Page,Costa del Sol,,,,,
+Insights,,,,,Overview Page,Costa del Sol,,,,,
+Insights,,,Paul Maida,,Predictive Maintenance,Vehicle Maintenance Analytics (DNA),,,,Edison Hao,
+Driver,Bryan Karp,Benjamin Wong,Brent McInnis,TBD,"HOS, Unidentified Driving",Titan,Kim Brown,,,,
+Office Admin / Dispatcher,,,Austin Williams,,Availability / Violations,Hyperion,,,,,
+Insights,,,Austin Williams,TBD,"FUTURE: Compliance Center (Benchmark, CSA, etc.)",Hyperion,,,,,
+Insights,,,Brent McInnis,,Trip Categorization,Titan,,,,,
+Vehicle,,,Jason Berresford,Lana Mul,DVIR (Asset Inspection),Tallon,,,,,Zeinab Rahal
+Sustainable Asset planning --> JPD roadmap view,Bryan Karp,Benjamin Wong,Hani Hawari,,Battery in the cloud,NA,NO SDM COVERAGE (Q1 2026),Hannah Koke,Mahima Sharma,Eric Zhang/Andrew Ewing,Zeinab Rahal
+Sustainable Asset planning --> JPD roadmap view,,,Hani Hawari,,Asset Lifecycle planning,Amethyst,,,,,
+Sustainable Asset planning --> JPD roadmap view,,,Hani Hawari,Yiqun Fang,Go electric (EVSA),Amethyst,,,,Shenal Siripala,Zeinab Rahal
+Operations - Maximize resource utilization and yield,Mike Shin,Benjamin Wong,Jason Berresford,Jesse Thompson,"MYG: Routing & Dispatch, Advanced Routing & Optimization, Voice AI Agents",Optimization Team,Kelechi Ekeh,Hannah Koke,Jason Mitrow,Ahmed Kadri,
+Operations - Maximize resource utilization and yield,,,Diego Ruiz Rivas,Jesse Thompson,"Drivers View: Routing & Dispatch, Advanced Routing & Optimization, Navigation",Optimization Team,Kelechi Ekeh,Hannah Koke,Jason Mitrow,Ahmed Kadri,
+Operations - Maximize resource utilization and yield,,,Kevin Morency,Yiqun Fang,"Resource Utilization, EV Performace, EV Charge Monitoring FUTURE: EV Operations",Amythest,Kim Brown,Hannah Koke,Mahima Sharma,Shenal Siripala Eric Zhang,Zeinab Rahal
+Operations - Reduce fuel costs and emissions,,,Laura Bryson,N/A,"Sustainability Overview, Fuel & Energy Overview, Fuel and EV Energy Usage, Idling Reduction, Emissions Reductions",Emerald,Wendy Lu,Hannah Koke,Mahima Sharma,Craig D'Costa,Zeinab Rahal
+Operations - Reduce fuel costs and emissions,,,Mike Shin,N/A,"Fill-ups, Fuel Transactions, EV Charging History",Green,Wendy Lu,Hannah Koke,Mahima Sharma,Craig D'Costa Edison Hao,Zeinab Rahal
+Operations - Reduce fuel costs and emissions,,,Krisha Engineer,Lana Mul,"Pollutants, CARB CTC, BAR CTP",Diagnostics,Kelechi Ekeh,Hannah Koke,Tailar Kennedy,"Harry Sivashankaran Erik Dick 
+Aakash Dubey",Zeinab Rahal
+Operations - Reduce fuel costs and emissions,,,,N/A,"IFTA FUTURE: Fuel Tax Rebates, Logbook/FBT/Keurmerk/Fahrtenbuch",Green,Wendy Lu,Jorge Gonzalez,Tailar Kennedy,Felix Mueller,Zeinab Rahal
+Expandability,David Wootten,Samuel Rendon Benjamin Wong,David Wootten,Anne Mary Pham (Amp),IOX-Core,Flux,N/A,,Caitlin Sachs,Erik Dick Ben Manningham,EMB: Jason Beausoleil
+Expandability,,,Naim Hilal,,"Installation Experience, MyInstall, Project Verified",SEAL,Sneha Gupta,,,Derek Serianni,MYG: Sahil Momin
+Expandability,,,Todd Conroy,,GO10 Plus (Project Trinity),Embedded Hardware & Software,Tiana Mistry Drew Briscoe,,,Derek Serianni,EMB: Jason Beausoleil
+Expandability,,,Ben MacNally,,GO10 (Project Flow),Embedded Hardware & Software,,,,,
+Expandability,,,Bade Akinsanya,,"Bluetooth Solutions (Beacons, Sensors)",,N/A,,TBD,,EMB: Jason Beausoleil
+Expandability,,,Rod Hardman,,Shared Mobility (Keyless),Hound,Xing Hai Suen,,Caitlin Sachs,"Christina Adams, Havandeep Rai, Ana Villegas, Eugene Mueller, Ben Hale, Eduardo Tassera, Neal Yoon",Josh Gloor
+Expandability,,,Rod Hardman,,NFC Reader,,N/A,,,Michael van Schalkwyk,EMB: Jason Beausoleil
+Expandability,,,Ben Gaffney,,"Asset Tracking (including GoAnywhere, Linked Assets)",Turing,Taimoor Khan,,TBD,,EMB: Jason Beausoleil
+Expandability,,,Miguel Pena Caffarena,Aaron Paterson,Cold Chain (IOX-UREADER/IOX-COLD),Turing,,,Mahima Sharma,Jon Hearsch Alfonso Santos Felix Mueller,Jorge Ruiz
+Expandability,,,Miguel Pena Caffarena,,Tachograph,Siesta,,,TBD,Alfonso Santos,Jorge Ruiz
+Expandability,Raymond Dikun,,Anthony Middleton,,"GO Platform:  Reliability, Modem/Connectivity; Kinematics (IMU), Location (GNSS), In-Life GO","Embedded Software (Reliability, Kinematics)",Sneha Gupta (GO POSIX),,TBD,,
+Expandability,,,Ben MacNally,,Satellite (IOX-SATIRID),,,,TBD,Derek Serianni,
+Vehicle Data,Raymond Dikun,,Kevin De Sousa,,"Vehicle Engine Data, AnySignal (configuration), Signal Definitions (Data Contracts), Canbus Hack Integration, Pillar Verticals Safety, Productivity",Vehicle Data Engineering,,,,"Alfonso Santos, Chris Calogero",Mohammed Al-Kfaween
+Vehicle Data,,,Ken Raupp,,"Vehicle Data And Nextgen testing/tools, AVIS Fuel Level Initiative.  Pillar Verticals Sustainability, Maintenance",,,,,,
+Vehicle Data,,,Madhu Kabra,,"Vehicle Support and Installation, Harness Consolidation, Data visibility, Digital Twin investigation (art of the possible) and Signature Accounts Engine Data Support",,,,,,
+Vehicle Data,,,Matt Wickey,,"Program Manager -- Vehicle Data, VDR Execution, ESUP/EI Escalations.",,,,,,
+Vehicle Data,,,Ary Gurjao,,Vehicle Coordination,,,,,,
+Marketplace,Charlie Elliott,Shaili Chibba,Shana Foghani,Kevin Carey,"Order Now/Integration Layer, Add-In Management",Griffins,Now Hiring,,Julia Pare,Ajay Srinivasan,
+Marketplace,,,Prathamesh Girish Malpani,,General Marketplace/ Ecommerce,Griffins,Now Hiring,,,Michael van Schalkwyk,
+Video & Marketplace Partners,Christopher Piche,Samuel Rendon,Chris Piche,Yunsung (Tylor) Lee,Geotab Video Platform Infrastructure,Team Intrepid,,,Jaime Lox,,
+Video & Marketplace Partners,,,Muhammad Dawood/Ifta/Stewart Wright,,Video Experience in MyGeotab,Team Intrepid,,,,,
+Video & Marketplace Partners,,,Ifta/ Cole Willison,,Geotab Video Partnerships & Integrations,Team Focus / Team Capture,,,,,
+Video & Marketplace Partners,,,Chris P/Claude,,Go Focus Pro,Team Plus,Clinton,,,,
+Video & Marketplace Partners,,,Chris P/Claude,,Go Focus Plus,Team Plus / GVP,,,,,
+Video & Marketplace Partners,,,PM TBD (Chris P interim),,Video AI & Analytics Model Development for Solution & Segment Use Cases,"(Cloud Based - DNA AI Platform, Edge - Chris Geotab Video Team)",,Tuhin Tiwari,,,
+Video Hardware,Raymond Dikun,,Cristian,,GO Focus,WNC + Embedded,Clinton,,,,
+Video Hardware,,,Cristian,,GO Focus 2 (Next Gen),WNC + Embedded,,Tuhin Tiwari,,,
+Resellers & Internal Services,Filip Jurkowski,Shaili Chibba,Glenn Sandrasagra,Tasha Karsan Beatriz Diaz Motta,"MyAdmin - Device Management, Billing/Invoices, Synergy, APIs","Bert, Iron, Appa, Rock",,,,"Blair Hoyle, Shivam Agnihotri",Marc Mancini
+Resellers & Internal Services,,,Denis Po (Leave),,"MyAdmin -  Security, Reliability, Integrations, Government","Hoth, Rock, Valk",,,,"Blair Hoyle, Shivam Agnihotri",Marc Mancini
+Resellers & Internal Services,,,Mike Accettura,,"PxHub, Known Issues, MyAdmin - Communications, Homepage, Helpdesk, CIAM","Appa, Rock, Iron, Pegasus",,,,Shivam Agnihotri,
+Resellers & Internal Services,,,Mayank Sachdeva,,"Vehicle Eligibility, Customer Management, User/Account/Database Management",,,,,,
+Resellers & Internal Services,,,Baadshah Verma,,"MyAdmin - Product Setup, Shipping/Fulfillment, Return Management","Appa, Valk, Rock, Iron",,,,"Blair Hoyle, Shivam Agnihotri",Marc Mancini
+Resellers & Internal Services,,,Filip Jurkowski,Anna Kirik,Digital Self-service Support,Griffins,,,,,Marc Mancini
+Resellers & Internal Services,Carrie LePage,,,Lynda Yao,"Marketing - Geotab.com, etc",Pegasus,,,,,Marc Mancini
+Altitude,Shweta Shah,Benjamin Wong,Deepak Ramnath James Gray Alice Friedman,Grace Guo Kayla Bowmaster Sarina Luchetta,Altitude by Geotab (formerly ITS) //Distinct Line of Business//,Paul Fabbroni,Matthew Cutler,Natalie Smith,Pam Bernier,Jyachi (Chris) Jin Alexander Nguyen Jake Lovie,"ESUP - Hari Hara Sudhan Govindaraj
+BD Leader - Nathaniel Veeh
+Tech Writing - Kiryl Rusetski"
+Product Safety,Harjot Singh,,,,,,,,,,
