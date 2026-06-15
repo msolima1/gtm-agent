@@ -1,0 +1,92 @@
+team,task,release_stage,timing,localization,new_or_update,audience,default_owner,dependencies,L1,L2,L3,L4
+PRODUCT MANAGEMENT - Pre-Kickoff Requirements,PR / FAQ,,,FALSE,,Internal,,,1,1,0,0
+PRODUCT MANAGEMENT - Pre-Kickoff Requirements,Business Case Doc/PRD,,,FALSE,,Internal,,,1,1,0,0
+PRODUCT MANAGEMENT - Pre-Kickoff Requirements,Define Launch Objectives & KPIs,,,FALSE,,Internal,,,1,1,1,0
+PRODUCT MANAGEMENT - Pre-Kickoff Requirements,Release Planning Document,,,FALSE,,Internal,,,1,1,1,0
+PRODUCT MANAGEMENT - Pre-Kickoff Requirements,GTM Kickoff Launch Deck,,,FALSE,,Internal,,,1,1,0,0
+PRODUCT MARKETING,Evergreen Product Messaging & Positioning Document,,,FALSE,,Internal,,,1,1,1,0
+PRODUCT MARKETING,Product Naming,,,FALSE,,Internal,,,1,0,0,0
+PRODUCT MARKETING,Product 101 Slides,,,FALSE,,"Customers, Partners, Prospects",,,1,1,1,0
+PRODUCT MARKETING,Product Brochure,,,FALSE,,Partners,,,1,1,0,0
+PRODUCT MARKETING,Product Overview/Marketing Video,,,FALSE,,"Partners, Customers, Prospects",,,1,1,0,0
+PRODUCT MARKETING,Product 201 Slides (Sales/Training Slides),,,FALSE,,Internal,,,1,1,0,0
+PRODUCT MARKETING,Partner Announcement / Dedicated Email,,,FALSE,,"Partners, Customers",,,1,0,0,0
+PRODUCT MARKETING,Partner Dispatch Copy,,,FALSE,,Partners,,,1,1,0,0
+PRODUCT MARKETING,FAQs/Objection Handling (Part of SE Playbook),,,FALSE,,Internal,,,1,1,0,0
+PRODUCT MARKETING,Battlecards,,,FALSE,,Internal,,,1,1,0,0
+PRODUCT MARKETING,Dedicated Customer Email Copy,,,FALSE,,Customers,,,1,0,0,0
+PRODUCT MARKETING,In-App Release Messaging in Pendo (Technical Content Solutions),,,FALSE,,,,,1,1,1,1
+PRODUCT MARKETING,What's New Email Inclusion/Copy,,,FALSE,,"Customers, Partners",,,1,1,1,1
+PRODUCT MARKETING,"Web Page(s) - Product, Family and Pillar Solutions",,,FALSE,,"Partners, Customers, Prospects",,,1,1,0,0
+LEARNING & MULTIMEDIA,Partner/User/Product or Installation Guides (Tech. Content Solutions),,,FALSE,,,,,1,1,1,1
+LEARNING & MULTIMEDIA,"Release-related Content (Release Notes, What's New) (Tech. Content Solutions)",,,FALSE,,,,,1,1,1,1
+LEARNING & MULTIMEDIA,Training Content: Courses (Learning Design) - SE is a stakeholder,,,FALSE,,,,,1,1,1,1
+LEARNING & MULTIMEDIA,Training Content: How-To Tutorials & Videos (Learning Design),,,FALSE,,,,,1,1,1,1
+LEARNING & MULTIMEDIA,In App (WalkMe) and/or Geotab Academy Updates (Learning Design),,,FALSE,,,,,1,1,1,0
+LEARNING & MULTIMEDIA,"MyLearning, In App Training (WalkMe) or Geotab Academy Updates (Learning Design)",,,FALSE,,,,,1,1,1,1
+LEARNING & MULTIMEDIA,Training Content: Installation Videos (Learning Design),,,FALSE,,,,,1,1,1,1
+LEARNING & MULTIMEDIA,Product Demos (Learning Design),,,FALSE,,,,,1,1,0,0
+LEARNING & MULTIMEDIA,Partner Training: Partner Insights Course for New Product Introduction (Partner Learning),,,FALSE,,"Partners, Internal",Tawny Deckard,,1,1,0,0
+SALES ENABLEMENT,Sales Playbook (includes FAQ's),,,FALSE,,"Internal, Partners",Tanja Rolph,"Dependency: Product Release Planning Doc, 5 weeks in advance of launch. 
+Two week to create Playbook + 3 weeks in advance of launch to support final edits and localization.",1,1,1,0
+SALES ENABLEMENT,Sales Excellence Session Scheduled,,,FALSE,,Internal,Tanja Rolph,"Dependency: Product Manager / PMM submit request to SE
+Should be booked 4 - 6 weeks in advance of presentation",1,1,1,0
+SALES ENABLEMENT,Host Sales Excellence,,,FALSE,,Internal,Tanja Rolph,Due 2 weeks before launch,1,1,1,0
+SALES ENABLEMENT,Office Hours Scheduled,,,FALSE,,Internal,Tanja Rolph,"1 before GA (duirng active Beta/Trials to inform sales content)
+After GA launch; 1-3 sessions scheduled for support as required",1,1,0,0
+SALES ENABLEMENT,"Publish updates to SE Newsletter - e.g. events, product updates, etc.",,,FALSE,,Internal,Tanja Rolph,Dependency: Product Manager to submit SE site update request leveraging 2025 one week in advance of SE session. SE to publish to newsletter post SE session.,1,1,1,1
+SALES ENABLEMENT,SE Site Dedicated Page Updates,,,FALSE,,Internal,Tanja Rolph,Dependency: Product Manager to submit SE dedicated page update/creation request to Tanja Rolph using the Product Page Template - updated every Monday (one week notice),1,1,1,0
+SALES ENABLEMENT,MASH Updates / PxHub Updates,,,FALSE,,"Internal, Partners",Tanja Rolph,"Dependency: Playbook, Marketing Tools & Resources, and Technical Tools completed and shared with SE. Posted launch day post PR announcement.",1,1,1,0
+SALES ENABLEMENT,Added to Pilot program portfolio,,,FALSE,,Internal,Angie Milne,Dependency: Product Update Content Brief - 4 weeks in advance of launch,1,1,1,0
+SALES ENABLEMENT,Added to Onboarding program portfolio,,,FALSE,,Internal,Rebecca Sheeran,,1,1,1,0
+SALES ENABLEMENT,Sales Comms Distributed - includes partner and inside sales,,,FALSE,,"Internal, Partners",Tanja Rolph,"Dependency: Approval communication posted on ""Communications List."" (Marketing Cloud Communications)",1,1,1,1
+SALES ENABLEMENT,Sales Enabled,,,FALSE,,,Beth Paisley,,1,1,1,0
+SALES ENABLEMENT,Sales Launch Retrospective,,,FALSE,,,Jean-Paul Beaupre,,1,1,0,0
+PARTNER PROGRAM/PARTNER ENABLEMENT,PX Hub Updates including Homepage announcement/CTA and resources for Product Library,,,FALSE,,Partners,Andrea Milosevic,,1,1,1,0
+PARTNER PROGRAM/PARTNER ENABLEMENT,Partner Marketing Toolkit (see dependencies),,,FALSE,,"Partners, Customers, Prospects",Andrea Milosevic,"PMM : Customer Deck, Sales Brochure, Battlecards, Product Photorgraphy & UI
+Messaging - created from PMM providing a) family positioning and b) product positioning in launch document
+IM: Social posts, banners",1,1,1,0
+PARTNER PROGRAM/PARTNER ENABLEMENT,Sales Programs and Initiatives aligned to product/pillar/segment- developed with Partner Program,,,FALSE,,Partners,Matthew McCrory,,1,0,0,0
+PARTNER PROGRAM/PARTNER ENABLEMENT,"Partner Comms and Regular Updates (newsletter, webinars)",,,FALSE,,Partners,Andrea Milosevic,,1,1,1,0
+PARTNER PROGRAM/PARTNER ENABLEMENT,"Product Feedback loop, Partner Metrics, and Strategic Alignment",,,FALSE,,,Matthew McCrory,,1,1,1,0
+CORPORATE MARKETING,Integrated Marketing strategy & tactical plan,,,FALSE,,Internal,Janice Kikkert,,1,1,0,0
+CORPORATE MARKETING,"SEO/AEO: Keyword Review and Strategy - Backlinking / Crosslinking, etc",,,FALSE,,,,,1,1,1,0
+CORPORATE MARKETING,"Content strategy - launch blogs, eBooks, infographics, etc",,,FALSE,,,,,1,1,0,0
+CORPORATE MARKETING,Nurture Campaigns (integration and promotion within existing nurture strategies where alignment),,,FALSE,,,,,1,1,0,0
+CORPORATE MARKETING,Fleet Newsletter monthly email,,,FALSE,,,,,1,1,0,0
+"Website Banners (Community, Drop Down, Home Page and/or MyG Login","Paid Search Strategy - Keyword bids, bid types, and landing page integration",,,FALSE,,,,,1,0,0,0
+SEGMENT MARKETING,Segmentation & Messaging,,,FALSE,,,Lauren Jinkerson,,1,1,0,0
+SEGMENT MARKETING,"Segment Toolkits Updates: Sales Decks, Brochure, etc",,,FALSE,,,,,1,1,0,0
+SEGMENT MARKETING,Industry Pages Updated With Segment-Focused Product Information,,,FALSE,,,,,1,1,0,0
+SEGMENT MARKETING,"Segment Market Awareness or Demand Gen Plan (digital always on, lead gen and/or ABM)",,,FALSE,,,,,1,1,0,0
+SEGMENT MARKETING,Tradeshow Assets Created or Updated,,,FALSE,,,,,1,1,0,0
+CHANNEL MARKETING,Channel strategy based on revenue opportunity and segment alignment,,,FALSE,,Internal,Carrie Heath,,1,1,0,0
+CHANNEL MARKETING,Develop/execute in-life pipeline acceleration strategy (As needed),,,FALSE,,"Customers, Prospects",,,1,1,0,0
+CHANNEL MARKETING,"Identify any promotions/incentives possible with right fit partners (i.e. Learn and Earn, customer offer)",,,FALSE,,Partners,,,1,0,0,0
+CHANNEL MARKETING,Trade show/event strategy and assets defined with right fit partners,,,FALSE,,"Partners, Customers, Prospects",,,1,1,0,0
+CHANNEL MARKETING,Case studies / success stories / use cases,,,FALSE,,"Customers, Prospects",,,1,1,0,0
+CHANNEL MARKETING,"Shell/dummy units for sales enablement, events and retail displays (~1000)",,,FALSE,,"Partners, Customers, Prospects",,,1,0,0,0
+CHANNEL MARKETING,Customize product and segment sales and marketing materials for identified right fit partners (as needed),,,FALSE,,"Partners, Customers, Prospects",,,1,1,0,0
+CHANNEL MARKETING,Customer Lifecycle Campaign,,,FALSE,,"Customers, Partners",Vim Mistry,,1,1,0,0
+REGIONAL MARKETING,Localization of any / all marketing materials,,,FALSE,,,,,1,1,0,0
+STRATEGIC COMMUNICATIONS,Strategic communications strategy,,,FALSE,,,Hanna Corrente,,1,0,0,0
+STRATEGIC COMMUNICATIONS,Thought Leadership program,,,FALSE,,,,,1,0,0,0
+STRATEGIC COMMUNICATIONS,Media strategy Geotab and/or partner/event support,,,FALSE,,,,,1,0,0,0
+STRATEGIC COMMUNICATIONS,Organic Social Media Communications,,,FALSE,,,,,1,0,0,0
+STRATEGIC COMMUNICATIONS,Designated spokesperson (s) and coaching,,,FALSE,,"Partners, Customers",,,1,0,0,0
+STRATEGIC COMMUNICATIONS,Executive/Leader communications plan,,,FALSE,,"Partners, Customers",,,1,0,0,0
+STRATEGIC COMMUNICATIONS,Employee engagement & communications,,,FALSE,,"Partners, Customers",,,1,0,0,0
+STRATEGIC COMMUNICATIONS,SOV tracking,,,FALSE,,"Partners, Customers",,,1,0,0,0
+STRATEGIC COMMUNICATIONS,News and Views - media/viewpoint blogs,,,FALSE,,"Partners, Customers",,,1,0,0,0
+EVENTS,"Identify target event launch, In-booth messaging & demo",,,FALSE,,,Emily Kiddie,,1,1,0,0
+EVENTS,"Speaking opportunity (pending timing, availability)",,,FALSE,,,,,1,1,0,0
+Community Programming,Community HomePage Digital Carousel Ad,,,FALSE,,,,,1,0,0,0
+Community Programming,Community Newsletter,,,FALSE,,,,,1,0,0,0
+SUPPORT TEAM,Support Training Delivery,,,FALSE,,Internal,,,1,1,0,0
+SUPPORT TEAM,Support Internal Resources,,,FALSE,,Internal,,,1,1,1,1
+SUPPORT TEAM,Support E2E Process Test Completion (if applicable),,,FALSE,,,,,1,1,0,0
+SUPPORT TEAM,Support Training Requirements Provided to Learning Design Team,,,FALSE,,Internal,,,1,1,0,0
+SOLUTIONS ENGINEERING,Solutions Engineering Session with Product (To address specific questions for Sol Eng),,,FALSE,,Internal,,,1,1,1,0
+SOLUTIONS ENGINEERING,Solutions Engineering SMEs Roster Updated (Sol Eng member(s) assigned to the launch),,,FALSE,,Internal,,,1,1,1,0
+RFX TEAM,"Detailed Description (a clear and complete description of new capability, the problem it solves/value proposition, key features and benefits and competitive differentiators)",,,FALSE,,,,,1,1,0,0
+RFX TEAM,Create or revise standard proposal boilerplace content/language,,,FALSE,,,,,1,1,0,0

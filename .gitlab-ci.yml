@@ -1,0 +1,5 @@
+# Playground pipeline — quality checks + promotion stages
+include:
+  - project: 'ai-hub/skill-ci-templates'
+    ref: main
+    file: '/promotion.yml'

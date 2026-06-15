@@ -1,0 +1,13 @@
+release_strategy,full_window_days,notes
+code_release,7,Ships in weekly release cycle (~7 days). GTM must be pre-staged.
+ff_fast,9,Feature flag fast rollout ~9 days to full availability. FF enablement date is the hard anchor.
+ff_slow,30,Feature flag slow/phased rollout ~1 month. GTM can stagger early-access vs GA.
+hidden_url,14,Hidden URL / preview server opt-in before GA. Closed-beta GTM opportunity.
+closed_beta,21,Invite-only via backend FF; duration at PM discretion (placeholder 21d).
+open_beta,84,Open beta 8-12 weeks (max 12). Path A toggle / Path B Beta pill.
+experimental,56,Experimental opt-in FF 4-12 weeks; may be pulled anytime.
+ga,7,General availability; full GTM activation across all teams.
+category,offset_days_before_anchor,notes
+primary,45,Pre-kickoff product docs done well before release.
+supporting,21,Docs/training/localization need source content ~3 weeks before.
+launch,14,Sales/marketing launch assets staged ~2 weeks before.
