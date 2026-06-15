@@ -13,8 +13,9 @@ drives execution. Pipeline (matches the team whiteboard):
 `Filter season -> read & summarize each JPD -> classify GTM level + customer-impact tier ->
 judge release strategy -> curate the GTM checklist -> backward-plan dated owners -> flag SDM gaps`.
 
-**Status: V1** — `list_jpds.py` (filter), `curate.py` (per-team curation), and `plan.py` (backward-
-planned dates) all work end-to-end. The bundled-narrative + launch-template output is being layered in.
+**Status: V1** — full pipeline works end-to-end: `list_jpds.py` (filter) -> `curate.py` (per-team
+curation) -> `plan.py` (backward-planned dates, season-end fallback) -> `render_html.py` (actionable
+HTML with highlighted gaps). LLM reasoning (Step 2) + launch-template output are layered on top.
 
 ## Prerequisites
 
@@ -116,13 +117,18 @@ stakeholders, files/links, Launch Tier, and the per-team briefs (each with what-
 need / dates) as the GTM Launch Tracker — large team briefs linked out as their own ticket/doc.
 Optional: season-portfolio HTML + per-JPD Gantt.
 
-**The HTML must be actionable, not dead.** Prominently highlight every GAP that needs a human in the
-loop so the SDM knows what to resolve to firm up the plan, including:
-- **Assumed anchors** (`anchor_assumed: true`) — date is a season-end guess, confirm real release date.
+`render_html.py` builds a single self-contained, ACTIONABLE HTML page (V0 = meaningful + visible):
+```bash
+python3 scripts/plan.py --curated-file curated.json --output json > plan.json
+python3 scripts/render_html.py --plan-file plan.json --out gtm_plan.html
+```
+It highlights every GAP at the top (banner) and inline on the affected JPD:
+- **Assumed anchors** (`anchor_assumed: true`) — season-end guess; confirm real release date.
 - **Missing GTM level** (`needs_sdm`) — ask the PMM/SDM to set the Launch Tier.
-- **Release-strategy gates** — e.g. "PM must test with 10 users before open beta", "FedRAMP rollout
-  TBD", "Figma not linked for Video". These gates DICTATE the GTM artifacts/timeline, so they must be
-  visually called out (banner/badge) at the top and inline on the affected team rows. *(Renderer = V1.)*
+- **TBD owners** — placeholder owners flagged for assignment.
+- **Release-strategy gates** — pass per-JPD `gates: [...]` (from Step 2 reasoning), e.g. "PM must test
+  with 10 users before open beta", "FedRAMP TBD", "Figma not linked for Video". These DICTATE the GTM
+  artifacts/timeline and render as red inline callouts on the JPD card.
 
 ## Human-in-the-loop (release-strategy gap-filler)
 
