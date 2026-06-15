@@ -102,7 +102,11 @@ python3 scripts/plan.py --curated-file curated.json --release-strategy ff_fast -
 python3 scripts/plan.py --curated-file level3.json --anchor 2026-08-01 --output table
 ```
 Output per JPD: a `kickoff_by` date and, per team, `start_date -> due_date` with owner + task count.
-JPDs with no Production Target are listed as `unplanned` (ask the PM for a release date).
+**Most JPDs lack a Production Target** — plan.py then anchors on the **end of the season** (e.g. Fall
+2026 -> 2026-11-30) and marks `anchor_assumed: true` / `anchor_source: ASSUMED end-of-season`. These
+assumed anchors MUST be surfaced as gaps to confirm (see Human-in-the-loop + Output). Override with
+`--season-end YYYY-MM-DD` or `--anchor`. Per-team SLA defaults to ~3 weeks (`lead_times.csv`), with
+content-heavy teams (Product Mgmt/Marketing, Learning, Video, Localization) at ~4 weeks.
 
 ## Step 5 — Output
 
@@ -110,7 +114,15 @@ The output is a **bundled GTM message + per-team brief set**, not a flat list. P
 **Product Launch one-source-of-truth** template: the bundled narrative as the positioning/overview,
 stakeholders, files/links, Launch Tier, and the per-team briefs (each with what-we-give / what-we-
 need / dates) as the GTM Launch Tracker — large team briefs linked out as their own ticket/doc.
-Optional: season-portfolio HTML + per-JPD Gantt. *(V1.)*
+Optional: season-portfolio HTML + per-JPD Gantt.
+
+**The HTML must be actionable, not dead.** Prominently highlight every GAP that needs a human in the
+loop so the SDM knows what to resolve to firm up the plan, including:
+- **Assumed anchors** (`anchor_assumed: true`) — date is a season-end guess, confirm real release date.
+- **Missing GTM level** (`needs_sdm`) — ask the PMM/SDM to set the Launch Tier.
+- **Release-strategy gates** — e.g. "PM must test with 10 users before open beta", "FedRAMP rollout
+  TBD", "Figma not linked for Video". These gates DICTATE the GTM artifacts/timeline, so they must be
+  visually called out (banner/badge) at the top and inline on the affected team rows. *(Renderer = V1.)*
 
 ## Human-in-the-loop (release-strategy gap-filler)
 

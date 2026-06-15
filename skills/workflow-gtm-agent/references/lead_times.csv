@@ -1,13 +1,31 @@
-release_strategy,full_window_days,notes
-code_release,7,Ships in weekly release cycle (~7 days). GTM must be pre-staged.
-ff_fast,9,Feature flag fast rollout ~9 days to full availability. FF enablement date is the hard anchor.
-ff_slow,30,Feature flag slow/phased rollout ~1 month. GTM can stagger early-access vs GA.
-hidden_url,14,Hidden URL / preview server opt-in before GA. Closed-beta GTM opportunity.
-closed_beta,21,Invite-only via backend FF; duration at PM discretion (placeholder 21d).
-open_beta,84,Open beta 8-12 weeks (max 12). Path A toggle / Path B Beta pill.
-experimental,56,Experimental opt-in FF 4-12 weeks; may be pulled anytime.
-ga,7,General availability; full GTM activation across all teams.
-category,offset_days_before_anchor,notes
-primary,45,Pre-kickoff product docs done well before release.
-supporting,21,Docs/training/localization need source content ~3 weeks before.
-launch,14,Sales/marketing launch assets staged ~2 weeks before.
+kind,key,days,notes
+strategy,code_release,7,Weekly release cycle ~7 days; GTM must be pre-staged.
+strategy,ff_fast,9,Feature flag fast rollout ~9 days to full availability.
+strategy,ff_slow,30,Feature flag slow/phased rollout ~1 month.
+strategy,hidden_url,14,Hidden URL / preview before GA.
+strategy,closed_beta,21,Invite-only backend FF; duration at PM discretion.
+strategy,open_beta,84,Open beta 8-12 weeks (max 12).
+strategy,experimental,56,Experimental opt-in FF 4-12 weeks.
+strategy,ga,7,General availability; full GTM activation.
+team,PRODUCT MANAGEMENT,28,Pre-kickoff product docs needed ~4 weeks before release.
+team,PRODUCT MARKETING,28,Positioning/messaging/PMM recommendation ~4 weeks before.
+team,LEARNING & MULTIMEDIA,28,Courses + how-to videos take ~4 weeks to produce.
+team,Localization,28,Needs source content early to translate (~4 weeks).
+team,Video,28,Video production lead time ~4 weeks (needs Figma + script).
+team,Technical Content,21,Docs / release notes ~3 weeks.
+team,Marketing Design,21,Marketing UI files + screenshots ~3 weeks.
+team,SOLUTIONS ENGINEERING,21,SE sessions + SME roster ~3 weeks.
+team,SALES ENABLEMENT,21,Playbooks + enablement sessions ~3 weeks.
+team,PARTNER PROGRAM,21,Partner enablement + PxHub ~3 weeks.
+team,PARTNER ENABLEMENT,21,Partner training on MyLearning ~3 weeks.
+team,CORPORATE MARKETING,21,Demand gen / SEO ~3 weeks.
+team,CHANNEL MARKETING,21,Channel GTM / sell-in decks ~3 weeks.
+team,SEGMENT MARKETING,21,Sub-segment campaigns ~3 weeks.
+team,REGIONAL MARKETING,21,Regional campaigns ~3 weeks.
+team,EVENTS,21,Event programming ~3 weeks.
+team,PRODUCT MANAGEMENT OPERATIONS,14,What's New / Release Notes near release (~2 weeks).
+team,STRATEGIC COMMUNICATIONS,14,Media / social near launch (~2 weeks).
+team,SUPPORT TEAM,14,Support comms + KB articles near release (~2 weeks).
+team,Community,14,Community programming ~2 weeks.
+team,RFX,14,RFx responses ~2 weeks.
+default,team_sla,21,Fallback SLA for any team not listed: 3 weeks.

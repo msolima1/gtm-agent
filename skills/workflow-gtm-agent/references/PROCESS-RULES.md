@@ -105,6 +105,27 @@ an overstuffed row.
 This turns Step 3 ("curate the checklist") into "generate per-team briefs from the bundled narrative",
 and the Step 5 output into a bundled GTM message + per-team brief set, not a flat list.
 
+## Planning assumptions (Mohamed, 2026-06-15)
+
+- **Most JPDs lack a Production Target.** When missing, anchor on the **end of the respective season**
+  (Fall->Nov 30, Spring->May 31, Summer->Aug 31, Winter->Feb 28, of the season's year) and backward-
+  plan from there. Mark such anchors as ASSUMED and surface them as gaps to confirm. Override with
+  `--season-end` / `--anchor`.
+- **Per-team SLA defaults to ~2-3 weeks.** Content-heavy teams (Product Mgmt, Product Marketing,
+  Learning & Multimedia, Video, Localization) get ~4 weeks; near-release teams (Product Ops/What's New,
+  Strategic Comms, Support, Community, RFx) ~2 weeks. Tunable in `references/lead_times.csv`.
+
+## HTML output must be ACTIONABLE, not dead (Mohamed, 2026-06-15)
+
+The final HTML must prominently highlight every gap/assumption/human-in-the-loop gate so it drives
+action to firm up the plan — not a static read-only artifact. Highlight at top (banner) and inline on
+affected rows:
+- Assumed season-end anchors (confirm real release date).
+- Missing GTM level / Launch Tier (ask PMM).
+- **Release-strategy gates that dictate the GTM artifacts**, e.g. "PM must test with 10 users before
+  open beta", "FedRAMP rollout decision TBD", "Figma not linked for Video team". These gates change
+  what GTM work is needed and when, so they must visibly drive the plan.
+
 ## REMAINING GAP
 
 The explicit **"Your action is your release strategy"** narrative (tier -> recommended rollout method/comms) was NOT in 1Tg0dv4 (that's the FF intake form). Only the 4 tiers table was seen (via screenshot). Agent reasons the mapping from tiers + FF form + beta rules, and routes to SDM when uncertain. Ask Mohamed for this narrative if a deterministic mapping is required.
