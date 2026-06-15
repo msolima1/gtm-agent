@@ -13,8 +13,8 @@ drives execution. Pipeline (matches the team whiteboard):
 `Filter season -> read & summarize each JPD -> classify GTM level + customer-impact tier ->
 judge release strategy -> curate the GTM checklist -> backward-plan dated owners -> flag SDM gaps`.
 
-**Status: V0** — `list_jpds.py` (filter + field extraction) is working and board-agnostic.
-Curation, backward-planning, and the launch-template output are being layered in.
+**Status: V1** — `list_jpds.py` (filter), `curate.py` (per-team curation), and `plan.py` (backward-
+planned dates) all work end-to-end. The bundled-narrative + launch-template output is being layered in.
 
 ## Prerequisites
 
@@ -80,17 +80,29 @@ THAT team actually needs:
   positioning + talk-track inputs).
 - **What we need from you** — their deliverables + due date.
 
-Use `references/gtm_checklist.csv` (86 tasks, `L1..L4` + team + release stage) to know WHICH teams
-and tasks apply at this GTM level, and `references/stakeholders.csv` for the named owner. But the
-deliverable is the per-team brief, not the raw row. If a team's brief is large, emit it as a
-**linked ticket or linked doc** rather than overstuffing one checklist row. *(Helper `curate.py`
-lands in V1.)*
+`curate.py` does the deterministic filtering + per-team grouping for you:
+```bash
+# single level template:
+python3 scripts/curate.py --level 3 --output table
+# whole season (uses each JPD's Launch Level; flags those with none):
+python3 scripts/curate.py --jpds-file jpds.json --output json > curated.json
+```
+It filters `references/gtm_checklist.csv` (86 tasks, `L1..L4` + team + release stage) to the level's
+tasks, groups by team, and joins the owner from `references/stakeholders.csv`. The deliverable you
+present is the per-team brief, not the raw row — if a team's brief is large, emit it as a **linked
+ticket or linked doc** rather than overstuffing one checklist row.
 
 ## Step 4 — Backward-plan dated owners
 
-Anchor on `production_target.start`; compute each task's start = anchor - lead time using
-`references/lead_times.csv` (code ~7d, FF fast ~9d, FF slow ~30d, open beta ~84d, etc.; plus per-
-category offsets). *(Helper `plan.py` lands in V1.)*
+`plan.py` anchors on `production_target.start` and computes each team's start = anchor - lead time
+from `references/lead_times.csv` (per-category offsets; release strategy widens the runway):
+```bash
+python3 scripts/plan.py --curated-file curated.json --release-strategy ff_fast --output table
+# single-level template needs an explicit anchor:
+python3 scripts/plan.py --curated-file level3.json --anchor 2026-08-01 --output table
+```
+Output per JPD: a `kickoff_by` date and, per team, `start_date -> due_date` with owner + task count.
+JPDs with no Production Target are listed as `unplanned` (ask the PM for a release date).
 
 ## Step 5 — Output
 
