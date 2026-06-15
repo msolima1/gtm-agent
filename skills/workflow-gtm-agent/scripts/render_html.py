@@ -27,34 +27,54 @@ def placeholder_owner(o):
     return (not o) or ("unassigned" in o) or o.startswith("from jpd") or "ask sdm" in o or "delegate" in o or "team" == o.split()[-1:] and False
 
 def collect_gaps(plan):
-    """Return list of (severity, jpd_key, text). severity in {high,med}."""
-    gaps=[]
+    """Return (items, summaries). items = distinct actionable (severity,key,text);
+    summaries = one-liners for repetitive gaps so the banner doesn't spam."""
+    items, summaries = [], []
+    assumed = [p["key"] for p in plan.get("planned", []) if p.get("anchor_assumed")]
+    # distinct, real human-in-the-loop items
     for p in plan.get("planned", []):
-        k=p["key"]
-        if p.get("anchor_assumed"):
-            gaps.append(("high", k, f"Release date ASSUMED ({p['anchor_date']}, end of season) — confirm real date with PM"))
+        k = p["key"]
         for g in p.get("gates", []):
-            gaps.append(("high", k, g))
+            items.append(("high", k, g))
         for q in p.get("questions_for_sdm", []):
-            gaps.append(("med", k, q))
-        for t in p.get("teams", []):
-            if placeholder_owner(t.get("owner")):
-                gaps.append(("med", k, f"Assign owner for {t['team']} (currently '{t.get('owner')}')"))
+            items.append(("med", k, q))
     for n in plan.get("needs_sdm", []):
-        gaps.append(("high", n.get("key"), f"No GTM level set — ask PMM to set Launch Tier ({n.get('reason','')})"))
+        items.append(("high", n.get("key"), f"No GTM level set — ask PMM to set Launch Tier"))
     for u in plan.get("unplanned", []):
-        gaps.append(("high", u.get("key"), f"Cannot date plan — {u.get('reason','')}"))
-    return gaps
+        items.append(("high", u.get("key"), f"Cannot date plan — {u.get('reason','')}"))
+    # repetitive gaps -> single summary lines
+    if assumed:
+        d = plan["planned"][0].get("anchor_date") if plan.get("planned") else ""
+        summaries.append(f"{len(assumed)} of {len(plan.get('planned',[]))} JPDs have no target date — "
+                         f"dated from assumed end-of-season; confirm real release dates with PM.")
+    return items, summaries
 
 def badge(text, color, fg="#fff"):
     return f'<span style="background:{color};color:{fg};border-radius:10px;padding:2px 9px;font-size:11px;font-weight:600;white-space:nowrap">{esc(text)}</span>'
+
+def _banner(summaries, high, med, gap_rows):
+    """Concise action banner: one-line summaries for repetitive gaps + distinct items only."""
+    n = len(high) + len(med)
+    sum_html = "".join(f'<div style="font-size:13px;margin:3px 0;color:{NAVY}">• {esc(s)}</div>' for s in summaries)
+    parts = []
+    if high:
+        parts.append(f'<div style="font-weight:700;color:{RED};font-size:14px;margin-top:6px">Needs a decision ({len(high)})</div>'
+                     f'<ul style="list-style:none;padding:0;margin:6px 0">{gap_rows(high)}</ul>')
+    if med:
+        parts.append(f'<div style="font-weight:700;color:{AMBER};font-size:14px;margin-top:6px">Follow-ups ({len(med)})</div>'
+                     f'<ul style="list-style:none;padding:0;margin:6px 0">{gap_rows(med)}</ul>')
+    title = f"⚠ Action needed to firm up this plan ({n})" if n else "Plan summary — confirm assumptions"
+    color = RED if n else AMBER
+    return (f'<div style="background:#fff;border:2px solid {color};border-radius:10px;padding:16px;margin:16px 0">'
+            f'<div style="font-weight:700;color:{color};font-size:15px">{title}</div>'
+            f'{sum_html}{"".join(parts)}</div>')
 
 def render(plan):
     proj=esc(plan.get("project")); season=esc(plan.get("season"))
     planned=plan.get("planned",[])
     n_assumed=sum(1 for p in planned if p.get("anchor_assumed"))
-    gaps=collect_gaps(plan)
-    high=[g for g in gaps if g[0]=="high"]; med=[g for g in gaps if g[0]=="med"]
+    items, summaries = collect_gaps(plan)
+    high=[g for g in items if g[0]=="high"]; med=[g for g in items if g[0]=="med"]
 
     def gap_rows(items):
         out=[]
@@ -83,7 +103,7 @@ def render(plan):
               <td style="text-align:center">{t.get('task_count')}</td>
               <td><ul style="margin:0 0 0 16px;padding:0;font-size:12.5px">{tasks}{more}</ul></td>
             </tr>""")
-        jpd_gates=[g for g in gaps if g[1]==p["key"]]
+        jpd_gates=[g for g in items if g[1]==p["key"]]
         gate_html = ""
         if jpd_gates:
             gate_html = '<div style="background:#fff5f0;border-left:4px solid %s;padding:8px 12px;margin:8px 0;border-radius:4px">'%RED \
@@ -111,14 +131,10 @@ h1{{margin:0;font-size:22px}} a{{color:{BLUE}}}</style></head><body>
   <h1>GTM Plan — {proj} <span style="color:{LIGHT}">/ {season}</span></h1>
   <div style="opacity:.85;font-size:13px;margin-top:6px">
     {len(planned)} JPDs planned &nbsp;•&nbsp; {n_assumed} on assumed season-end anchor &nbsp;•&nbsp;
-    {len(high)} action items &nbsp;•&nbsp; {len(plan.get('needs_sdm',[]))} need a GTM level
+    {len(high)+len(med)} action items
   </div></div></div>
 <div class="wrap">
-  <div style="background:#fff;border:2px solid {RED};border-radius:10px;padding:16px;margin:16px 0">
-    <div style="font-weight:700;color:{RED};font-size:15px">⚠ Action needed to firm up this plan ({len(high)})</div>
-    <ul style="list-style:none;padding:0;margin:8px 0">{gap_rows(high)}</ul>
-    {('<div style="font-weight:700;color:%s;font-size:14px;margin-top:8px">Owners / follow-ups (%d)</div><ul style="list-style:none;padding:0;margin:8px 0">%s</ul>'%(AMBER,len(med),gap_rows(med))) if med else ''}
-  </div>
+  {_banner(summaries, high, med, gap_rows)}
   {''.join(cards)}
   <div style="color:{GREY};font-size:12px;margin:24px 0">Generated by workflow-gtm-agent. Assumed anchors and gates above are not final — confirm with PM/PMM/Dev Lead.</div>
 </div></body></html>"""
