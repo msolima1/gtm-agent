@@ -39,12 +39,14 @@ def api(base, email, token, path, params=None):
         return json.load(r)
 
 def field_map(base, email, token):
-    """name(lower) -> id"""
+    """returns (first: name->id, all: name->[ids]) — some names (e.g. 'Season') repeat."""
     fields = api(base, email, token, "/rest/api/3/field")
-    m = {}
+    first, allm = {}, {}
     for f in fields:
-        m.setdefault(f["name"].strip().lower(), f["id"])
-    return m
+        n = f["name"].strip().lower()
+        first.setdefault(n, f["id"])
+        allm.setdefault(n, []).append(f["id"])
+    return first, allm
 
 def fid(fmap, name, default=None):
     return fmap.get(name.strip().lower(), default)
@@ -78,35 +80,39 @@ def search(base, email, token, jql, fields, mx):
             break
     return out[:mx]
 
-def build_jql(project, season, season_fid):
+def build_jql(project, season, season_fids, extra_jql=None):
     label = season.replace(" ", "")
     clauses = [f'project = "{project}"', "issuetype = Idea"]
+    # season can live in the label OR in any field named "Season" (teams differ)
     season_clauses = [f'labels = "{label}"']
-    if season_fid:
-        season_clauses.append(f'"{season_fid}" = "{season}"')
-    # text fallback (Polaris description/summary mentions)
+    for sf in (season_fids or []):
+        season_clauses.append(f'cf[{sf.replace("customfield_","")}] = "{season}"')
     clauses.append("(" + " OR ".join(season_clauses) + ")")
+    if extra_jql:
+        clauses.append(f"({extra_jql})")
     return " AND ".join(clauses) + " ORDER BY updated DESC"
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--project", required=True)
     ap.add_argument("--season", required=True)
-    ap.add_argument("--max", type=int, default=60)
+    ap.add_argument("--extra-jql", help='Extra JQL ANDed in, e.g. \'"Product Team"="Maintenance"\'')
+    ap.add_argument("--max", type=int, default=100)
     ap.add_argument("--output", choices=["json", "table"], default="json")
     a = ap.parse_args()
 
     email, token, base = creds()
-    fmap = field_map(base, email, token)
+    fmap, fmap_all = field_map(base, email, token)
     f_level = fid(fmap, "Launch Level")
     f_prod  = fid(fmap, "Production Target")
     f_season= fid(fmap, "Season")
+    f_seasons = fmap_all.get("season", [])
     f_ff    = fid(fmap, "Merge is behind a Feature Flag")
 
-    jql = build_jql(a.project, a.season, f_season)
+    jql = build_jql(a.project, a.season, f_seasons, a.extra_jql)
     wanted = ["summary", "assignee", "labels"]
-    for x in (f_level, f_prod, f_season, f_ff):
-        if x: wanted.append(x)
+    for x in [f_level, f_prod, f_ff] + f_seasons:
+        if x and x not in wanted: wanted.append(x)
 
     try:
         issues = search(base, email, token, jql, wanted, a.max)
@@ -123,7 +129,7 @@ def main():
             "launch_level": lvl,
             "level_source": "field:Launch Level" if lvl else "MISSING -> infer or ask SDM",
             "production_target": as_daterange(f.get(f_prod)) if f_prod else None,
-            "season": val(f.get(f_season)) if f_season else None,
+            "season": next((val(f.get(s)) for s in f_seasons if f.get(s)), None),
             "behind_ff": val(f.get(f_ff)) if f_ff else None,
             "assignee": (f.get("assignee") or {}).get("displayName") if f.get("assignee") else None,
             "labels": f.get("labels"),
