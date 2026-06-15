@@ -83,6 +83,28 @@ JPD summary -> **customer-impact tier** (4 tiers) -> **release strategy** (FF fa
 
 When release strategy / level / anchor date can't be determined confidently, emit a "Questions for SDM" block naming WHO to ask: **Dev Lead** (FF mechanics/technical), **PM** (release timing/target), **PMM** (level/positioning). Demo cases with `Level = None`: MYGJPD-2830, MYGJPD-3771.
 
+## CORE REASONING COMPONENT — translate & bundle, then per-team briefs (Mohamed, 2026-06-15)
+
+The agent's central value is NOT producing a checklist. It is a **translation + bundling engine**:
+
+1. **Translate**: read JPD descriptions (written by PMs/devs as requirements) and understand the
+   actual customer-facing change. The GTM roster does NOT care about individual JPDs.
+2. **Bundle**: combine the season's JPDs into ONE meaningful narrative — a combined product
+   improvement / change / release story aimed at the GTM crew. This is the SDM's real job.
+3. **Per-team briefs**: from that bundled narrative, craft a TAILORED brief for each GTM team based on
+   what THAT team actually needs — not the raw checklist. Example: the Video team cares about a Figma
+   link + instructions, nothing else; Localization cares about source content + locales; Sales
+   Enablement cares about positioning + talk-track inputs.
+
+Output per team = two-directional bullets:
+   - **What we're giving you** (inputs/context/assets relevant to this team).
+   - **What we need from you** (deliverables + by when).
+If a team's brief is too large for the checklist, emit it as a **linked ticket or linked doc**, not
+an overstuffed row.
+
+This turns Step 3 ("curate the checklist") into "generate per-team briefs from the bundled narrative",
+and the Step 5 output into a bundled GTM message + per-team brief set, not a flat list.
+
 ## REMAINING GAP
 
 The explicit **"Your action is your release strategy"** narrative (tier -> recommended rollout method/comms) was NOT in 1Tg0dv4 (that's the FF intake form). Only the 4 tiers table was seen (via screenshot). Agent reasons the mapping from tiers + FF form + beta rules, and routes to SDM when uncertain. Ask Mohamed for this narrative if a deterministic mapping is required.

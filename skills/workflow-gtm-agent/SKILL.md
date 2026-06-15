@@ -64,11 +64,27 @@ the summary/description and produce:
 - Output a record: `{key, summary, gtm_level, level_source, impact_tier, release_strategy,
   anchor_date, confidence, questions_for_sdm[]}`.
 
-## Step 3 — Curate the checklist (deterministic)
+## Step 2.5 — Bundle into ONE GTM narrative (the core value)
 
-Filter `references/gtm_checklist.csv` (86 tasks, with `L1..L4` applicability + team + release stage)
-to rows that apply at the JPD's GTM level; join owners from `references/stakeholders.csv`.
-*(Helper `curate.py` lands in V1.)*
+The agent is a **translation + bundling engine**, not a checklist printer. The GTM roster does not
+care about individual JPDs (those are PM/dev requirement artifacts). Synthesize the season's JPDs
+into **one combined product-change / release narrative** aimed at the GTM crew — the message a SDM
+would craft: what is shipping this season, why it matters to customers, how it bundles together.
+
+## Step 3 — Per-team briefs (translate the narrative for each team)
+
+Do NOT emit a flat checklist. For each relevant GTM team, produce a **tailored brief** based on what
+THAT team actually needs:
+- **What we're giving you** — the inputs/context/assets relevant to this team (e.g. Video team =
+  Figma link + instructions only; Localization = source content + locales; Sales Enablement =
+  positioning + talk-track inputs).
+- **What we need from you** — their deliverables + due date.
+
+Use `references/gtm_checklist.csv` (86 tasks, `L1..L4` + team + release stage) to know WHICH teams
+and tasks apply at this GTM level, and `references/stakeholders.csv` for the named owner. But the
+deliverable is the per-team brief, not the raw row. If a team's brief is large, emit it as a
+**linked ticket or linked doc** rather than overstuffing one checklist row. *(Helper `curate.py`
+lands in V1.)*
 
 ## Step 4 — Backward-plan dated owners
 
@@ -78,9 +94,11 @@ category offsets). *(Helper `plan.py` lands in V1.)*
 
 ## Step 5 — Output
 
-Populate a copy of the **Product Launch one-source-of-truth** template (stakeholders, files/links,
-positioning + Launch Tier, and the curated+dated checklist as the GTM Launch Tracker). Optional:
-season-portfolio HTML + per-JPD Gantt. *(V1.)*
+The output is a **bundled GTM message + per-team brief set**, not a flat list. Populate a copy of the
+**Product Launch one-source-of-truth** template: the bundled narrative as the positioning/overview,
+stakeholders, files/links, Launch Tier, and the per-team briefs (each with what-we-give / what-we-
+need / dates) as the GTM Launch Tracker — large team briefs linked out as their own ticket/doc.
+Optional: season-portfolio HTML + per-JPD Gantt. *(V1.)*
 
 ## Human-in-the-loop (release-strategy gap-filler)
 
