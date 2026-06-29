@@ -1,6 +1,6 @@
 # GTM Agent — Multi-Agent Launch Planner
 
-A Claude Code skill + sub-agent orchestrator that turns a product backlog and release season into a backward-planned GTM plan.
+A multi-agent orchestrator that turns a product backlog and release season into a backward-planned GTM plan.
 
 ## Architecture
 
