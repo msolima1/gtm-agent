@@ -1,27 +1,35 @@
-# gtm-agent
+# GTM Agent — Multi-Agent Launch Planner
 
-A Claude Code skill that turns a product backlog + season into a backward-planned GTM plan.
+A Claude Code skill + sub-agent orchestrator that turns a product backlog and release season into a backward-planned GTM plan.
 
-## What it does
+## Architecture
 
-Given a set of product ideas and a release season, the agent:
+The skill is a two-layer system:
+- **Orchestrator** — the Claude Code skill that runs the pipeline and coordinates everything
+- **Sub-agents** — one Claude sub-agent spun up per product idea, each reading, summarizing, and classifying in isolation to keep context clean
 
-1. Filters ideas to the current season
-2. Reads and summarizes each item
-3. Classifies by GTM level (1-4) and customer-impact tier
-4. Judges release strategy (GA, beta, silent, etc.)
-5. Curates a GTM checklist per item
-6. Backward-plans dated owners from the season end date
-7. Flags gaps that need SDM input
+Python scripts handle data fetching and rendering; LLM reasoning handles classification and judgment.
 
-Output is an actionable HTML dashboard with highlighted gaps and owner assignments.
+## Pipeline
+
+```
+Filter season ideas
+  → fan-out: one sub-agent per idea
+      → read & summarize
+      → classify GTM level (1-4) + customer-impact tier
+      → judge release strategy (GA / beta / silent / phased)
+      → curate GTM checklist rows
+  → backward-plan dated owners from season end date
+  → flag gaps needing human input
+  → render HTML dashboard
+```
 
 ## Stack
 
-- Claude Code skill (multi-step agentic pipeline)
-- Python 3 (stdlib only, no dependencies)
+- Claude Code skill (orchestrator)
+- Claude sub-agents (one per product idea, parallel fan-out)
+- Python 3 — `list_jpds.py`, `curate.py`, `plan.py`, `render_html.py`
 - Jira API for backlog data
-- LLM reasoning for classification and checklist curation
 
 ## Usage
 
