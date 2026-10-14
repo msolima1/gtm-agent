@@ -1,0 +1,164 @@
+---
+name: workflow-gtm-agent
+description: "GTM Agent for product launches. Given a backlog board + release season, filters the season's items, classifies each by GTM level and customer-impact tier, judges release strategy, curates the GTM checklist, and backward-plans dated owners. Use for GTM planning, launch readiness, release planning, season GTM, backlog-to-GTM, or 'what GTM work does this feature need'."
+---
+
+# GTM Agent
+
+## Overview
+
+Turns a backlog board + season into a backward-planned GTM plan. The product manager sets
+direction; the agent drives execution. Pipeline:
+
+`Filter season -> read & summarize each item -> classify GTM level + customer-impact tier ->
+judge release strategy -> curate the GTM checklist -> backward-plan dated owners -> flag gaps`.
+
+**Status: V1** — full pipeline works end-to-end: `list_jpds.py` (filter) -> `curate.py` (per-team
+curation) -> `plan.py` (backward-planned dates, season-end fallback) -> `render_html.py` (actionable
+HTML with highlighted gaps). LLM reasoning (Step 2) + launch-template output are layered on top.
+
+## Prerequisites
+
+- `~/jira.json` with `{email, token, base_url}` (a Jira-compatible issue-tracker API token). This
+  is only needed for Step 1 if you want to pull live backlog data — the rest of the pipeline runs
+  entirely on local JSON/CSV files, so you can try it with the bundled sample data without any
+  credentials.
+- Python 3 (stdlib only — no pip installs).
+
+## Three axes the agent must keep distinct
+
+1. **GTM Level / Launch Tier 1-4** — marketing investment. From a backlog custom field (e.g.
+   "Launch Level", often pre-set), else inferred, else ask the PM. Decides *which checklist rows
+   apply*.
+2. **Customer-impact tier** — Low / Medium Additive / Medium Disruptive / High (UX disruption).
+   Decides *release strategy + comms intensity*.
+3. **Release strategy** — code release / feature-flag fast / feature-flag slow / hidden URL /
+   closed beta / open beta / experimental / GA.
+
+## Step 1 — Filter the board by season
+
+```bash
+python3 scripts/list_jpds.py --project <BOARD> --season "<Season>" --output table
+# JSON for piping into later steps:
+python3 scripts/list_jpds.py --project <BOARD> --season "<Season>" --output json
+```
+
+- Board-agnostic: resolves "Launch Level", "Production Target", "Season" field IDs BY NAME at
+  runtime, so the same script works across different boards/projects without hardcoding field IDs.
+- Season is flexible: a **label** (e.g. `Fall2026`), a Season-field value (e.g. `Fall 2026`), or
+  free text. **If 0 results, the tool prints the labels/season values that actually exist on that
+  board** — pick yours and re-run.
+
+Each item returns: `key, summary, launch_level, level_source, production_target (anchor), season,
+behind_ff, assignee, url`. Items missing level or anchor are flagged for human input.
+
+## Step 2 — Read, summarize & classify each item (agent reasoning, fan-out)
+
+For each backlog item (fan out one sub-agent per item when the list is long, to keep context
+isolated), read the summary/description and produce:
+- **Summary / Why / Who** (the owning PM) and tie it to **customer impact**.
+- **GTM level**: use `launch_level` if present; else infer L1-L4 from customer + market impact
+  (NEVER dev effort); else flag.
+- **Customer-impact tier** (Low / Med Additive / Med Disruptive / High) from the change
+  description:
+  - **Low** — a small UI change that does not affect the current workflow (e.g. a button color).
+  - **Medium Additive** — something new, but the existing workflow is unchanged (e.g. a new tab on
+    an existing table).
+  - **Medium Disruptive** — a change that affects how an existing task is completed; customers need
+    advance notice (e.g. moving a button, renaming a column).
+  - **High** — a brand-new workflow or a major redesign of an existing one.
+- **Release strategy**: judge from the summary + signals (`behind_ff`, anchor shape, beta
+  language) — feature-flag fast/slow rollout, closed/open beta, experimental, or straight GA.
+- Output a record: `{key, summary, gtm_level, level_source, impact_tier, release_strategy,
+  anchor_date, confidence, questions_for_pm[]}`.
+
+## Step 2.5 — Bundle into ONE GTM narrative (the core value)
+
+The agent is a **translation + bundling engine**, not a checklist printer. The GTM teams don't
+care about individual backlog items (those are PM/dev requirement artifacts). Synthesize the
+season's items into **one combined product-change / release narrative** aimed at the GTM crew —
+the message a product/program manager would craft: what is shipping this season, why it matters to
+customers, how it bundles together.
+
+## Step 3 — Per-team briefs (translate the narrative for each team)
+
+Do NOT emit a flat checklist. For each relevant GTM team, produce a **tailored brief** based on
+what THAT team actually needs:
+- **What we're giving you** — the inputs/context/assets relevant to this team (e.g. a video team =
+  design-file link + instructions only; localization = source content + locales; sales enablement =
+  positioning + talk-track inputs).
+- **What we need from you** — their deliverables + due date.
+
+`curate.py` does the deterministic filtering + per-team grouping for you:
+```bash
+# single level template:
+python3 scripts/curate.py --level 3 --output table
+# whole season (uses each item's Launch Level; flags those with none):
+python3 scripts/curate.py --jpds-file items.json --output json > curated.json
+# fill real named owners for a product pillar from the roster:
+python3 scripts/curate.py --jpds-file items.json --pillar Maintenance --output json > curated.json
+```
+`--pillar` resolves the pillar's named squad (product leader, PM, design, SDM/program manager,
+product marketing, solutions engineering, support) from `references/product_roster.csv` and
+replaces placeholder owners. Pillar keyword sets live in `curate.py` (`PILLAR_KEYWORDS`) — extend
+for other domains.
+
+It filters `references/gtm_checklist.csv` (sample data — see README) by level, groups by team, and
+joins the owner from `references/stakeholders.csv`. The deliverable you present is the per-team
+brief, not the raw row — if a team's brief is large, emit it as a **linked ticket or linked doc**
+rather than overstuffing one checklist row.
+
+## Step 4 — Backward-plan dated owners
+
+`plan.py` anchors on `production_target.start` and computes each team's start = anchor - lead time
+from `references/lead_times.csv` (per-category offsets; release strategy widens the runway):
+```bash
+python3 scripts/plan.py --curated-file curated.json --release-strategy ff_fast --output table
+# single-level template needs an explicit anchor:
+python3 scripts/plan.py --curated-file level3.json --anchor 2026-08-01 --output table
+```
+Output per item: a `kickoff_by` date and, per team, `start_date -> due_date` with owner + task
+count. **Many items lack a confirmed release date** — `plan.py` then anchors on the **end of the
+season** (e.g. Fall 2026 -> 2026-11-30) and marks `anchor_assumed: true` /
+`anchor_source: ASSUMED end-of-season`. These assumed anchors MUST be surfaced as gaps to confirm
+(see Human-in-the-loop + Output). Override with `--season-end YYYY-MM-DD` or `--anchor`. Per-team
+SLA defaults to ~3 weeks (`lead_times.csv`), with content-heavy teams (product management/marketing,
+localization) at ~4 weeks.
+
+## Step 5 — Output
+
+The output is a **bundled GTM message + per-team brief set**, not a flat list. Populate a copy of a
+Product Launch one-source-of-truth doc: the bundled narrative as the positioning/overview,
+stakeholders, files/links, Launch Tier, and the per-team briefs (each with what-we-give / what-we-
+need / dates) as the GTM launch tracker — large team briefs linked out as their own ticket/doc.
+Optional: season-portfolio HTML + per-item Gantt.
+
+`render_html.py` builds a single self-contained, ACTIONABLE HTML page (V0 = meaningful + visible):
+```bash
+python3 scripts/plan.py --curated-file curated.json --output json > plan.json
+python3 scripts/render_html.py --plan-file plan.json --out gtm_plan.html
+```
+It highlights every GAP at the top (banner) and inline on the affected item:
+- **Assumed anchors** (`anchor_assumed: true`) — season-end guess; confirm real release date.
+- **Missing GTM level** (`needs_sdm`) — ask the PM/PMM to set the Launch Tier.
+- **TBD owners** — placeholder owners flagged for assignment.
+- **Release-strategy gates** — pass per-item `gates: [...]` (from Step 2 reasoning), e.g. "test
+  with 10 users before open beta", "legal/compliance review TBD", "design file not linked for the
+  video team". These DICTATE the GTM artifacts/timeline and render as red inline callouts on the
+  item card.
+
+## Human-in-the-loop (release-strategy gap-filler)
+
+When level / release strategy / anchor can't be determined confidently, emit a **"Questions for the
+team"** block naming WHO to ask: **Dev Lead** (feature-flag mechanics), **PM** (release timing),
+**PMM** (level/positioning). Never silently guess.
+
+## References
+
+- `references/gtm_checklist.csv` — sample GTM tasks x level applicability x team x release stage.
+  This is **sample data** illustrating the schema, not a real checklist — swap in your own.
+- `references/stakeholders.csv` — GTM team -> role -> default (cross-pillar) owner. Sample data.
+- `references/product_roster.csv` — portfolio/focus-area -> named squad (product leader, PM,
+  design, program manager, data science, product marketing, solutions engineering, support). Used
+  by `curate.py --pillar` to fill real names. Sample data.
+- `references/lead_times.csv` — release-strategy windows + per-team SLAs.

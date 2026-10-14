@@ -1,0 +1,11 @@
+team,task,release_stage,timing,localization,new_or_update,audience,default_owner,dependencies,L1,L2,L3,L4
+PRODUCT MARKETING,Positioning & messaging doc,pre-launch,4 weeks before,FALSE,new,Internal,,,1,1,1,0
+PRODUCT MARKETING,Launch deck,pre-launch,3 weeks before,FALSE,new,"Customers, Partners",,,1,1,0,0
+SALES ENABLEMENT,Sales playbook,pre-launch,3 weeks before,FALSE,new,Internal,,,1,1,1,0
+SALES ENABLEMENT,Enablement session,pre-launch,2 weeks before,FALSE,new,Internal,,,1,1,1,0
+SUPPORT,Support team training,pre-launch,2 weeks before,FALSE,update,Internal,,,1,1,0,0
+SUPPORT,Knowledge base article,launch,at launch,FALSE,new,Customers,,,1,1,1,1
+DOCS,Release notes,launch,at launch,FALSE,new,Customers,,,1,1,1,1
+DOCS,Product guide update,pre-launch,2 weeks before,FALSE,update,Customers,,,1,1,1,0
+LOCALIZATION,Translate release notes,launch,at launch,TRUE,update,Customers,,,0,1,1,1
+LEGAL,Compliance review,pre-launch,4 weeks before,FALSE,new,Internal,,,0,0,1,1

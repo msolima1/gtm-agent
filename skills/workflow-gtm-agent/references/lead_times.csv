@@ -1,0 +1,17 @@
+kind,key,days,notes
+strategy,code_release,7,Weekly release cycle; GTM should be pre-staged.
+strategy,ff_fast,9,Feature-flag fast rollout to full availability.
+strategy,ff_slow,30,Feature-flag slow/phased rollout (~1 month).
+strategy,hidden_url,14,Hidden URL / preview before general availability.
+strategy,closed_beta,21,Invite-only beta; duration at PM discretion.
+strategy,open_beta,84,Open beta; typically 8-12 weeks.
+strategy,experimental,56,Experimental opt-in flag; 4-12 weeks.
+strategy,ga,7,General availability; full GTM activation.
+team,PRODUCT MANAGEMENT,28,Pre-kickoff product docs needed ~4 weeks before release.
+team,PRODUCT MARKETING,28,Positioning and messaging ~4 weeks before launch.
+team,LOCALIZATION,28,Needs source content early to translate (~4 weeks).
+team,SALES ENABLEMENT,21,Playbooks and enablement sessions ~3 weeks.
+team,DOCS,21,Docs and release notes ~3 weeks.
+team,SUPPORT,14,Support comms and KB articles near release (~2 weeks).
+team,LEGAL,28,Compliance / legal review ~4 weeks before release.
+default,team_sla,21,Fallback SLA for any team not listed: 3 weeks.

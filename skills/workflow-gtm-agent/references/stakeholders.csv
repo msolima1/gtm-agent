@@ -1,0 +1,8 @@
+team_keyword,category,role,default_owner,contact
+PRODUCT MANAGEMENT,primary,Product manager (owns the backlog item),from backlog assignee,
+PRODUCT MARKETING,primary,Product marketing manager (recommends Launch Tier),PMM,
+SALES ENABLEMENT,launch,Playbooks / enablement sessions,Sales Enablement Lead,
+SUPPORT,supporting,Support comms / knowledge base,Support Lead,
+DOCS,supporting,Documentation / release notes / product guide,Docs Lead,
+LOCALIZATION,supporting,Localization of content for languages/regions,Localization Lead,
+LEGAL,launch,Compliance / legal review,Legal Lead,
